@@ -60,55 +60,56 @@ const TrafficChart = () => {
     <Card className="col-span-2">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-medium">API Traffic Overview</CardTitle>
+      </CardHeader>
+      <CardContent>
         <Tabs defaultValue="hourly">
-          <TabsList className="grid grid-cols-3 w-[240px]">
+          <TabsList className="grid grid-cols-3 w-[240px] mb-4">
             <TabsTrigger value="hourly">Hourly</TabsTrigger>
             <TabsTrigger value="daily">Daily</TabsTrigger>
             <TabsTrigger value="weekly">Weekly</TabsTrigger>
           </TabsList>
+          
+          <div className="h-[300px]">
+            <TabsContent value="hourly" className="h-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={hourlyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
+                  <YAxis stroke="hsl(var(--muted-foreground))" />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
+                  <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </TabsContent>
+            
+            <TabsContent value="daily" className="h-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={dailyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
+                  <YAxis stroke="hsl(var(--muted-foreground))" />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
+                  <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </TabsContent>
+            
+            <TabsContent value="weekly" className="h-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
+                  <YAxis stroke="hsl(var(--muted-foreground))" />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
+                  <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </TabsContent>
+          </div>
         </Tabs>
-      </CardHeader>
-      <CardContent>
-        <div className="h-[300px]">
-          <TabsContent value="hourly" className="h-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={hourlyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
-                <YAxis stroke="hsl(var(--muted-foreground))" />
-                <Tooltip content={<CustomTooltip />} />
-                <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
-                <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </TabsContent>
-          
-          <TabsContent value="daily" className="h-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={dailyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
-                <YAxis stroke="hsl(var(--muted-foreground))" />
-                <Tooltip content={<CustomTooltip />} />
-                <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
-                <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </TabsContent>
-          
-          <TabsContent value="weekly" className="h-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={weeklyData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
-                <YAxis stroke="hsl(var(--muted-foreground))" />
-                <Tooltip content={<CustomTooltip />} />
-                <Line type="monotone" dataKey="requests" stroke="hsl(var(--primary))" activeDot={{ r: 6 }} strokeWidth={2} />
-                <Line type="monotone" dataKey="errors" stroke="hsl(var(--destructive))" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </TabsContent>
-        </div>
       </CardContent>
     </Card>
   );
